@@ -1,0 +1,21 @@
+import socket
+
+def check_ip_type(ip):
+    try:
+        # IPV 4 
+        socket.inet_pton(socket.AF_INET, ip)
+        return "IPv4"
+    except socket.error:
+        try:
+            # IPV 6
+            socket.inet_pton(socket.AF_INET6, ip)
+            return "IPv6"
+        except socket.error:
+            return "Érvénytelen IP cím"
+
+
+ip_cim = input("Kérem adjon meg egy IP címet: ")
+
+# Ellenőrzés
+ip_tipus = check_ip_type(ip_cim)
+print(f"A megadott IP cím típus: {ip_tipus}")
